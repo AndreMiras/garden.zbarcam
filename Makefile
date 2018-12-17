@@ -32,6 +32,7 @@ $(OPENCV_BUILD):
 	curl --location https://github.com/opencv/opencv/archive/$(OPENCV_VERSION).tar.gz \
 		--progress-bar --output $(OPENCV_BASENAME).tar.gz
 	tar -xf $(OPENCV_BASENAME).tar.gz
+	sed -i '1s/^/#define AV_CODEC_FLAG_GLOBAL_HEADER (1 << 22)\n#define CODEC_FLAG_GLOBAL_HEADER AV_CODEC_FLAG_GLOBAL_HEADER\n#define AVFMT_RAWPICTURE 0x0020\n/' "$(OPENCV_BASENAME)/modules/highgui/src/cap_ffmpeg_impl.hpp"
 	cmake \
 		-D BUILD_DOCS=OFF -D BUILD_PACKAGE=OFF -D BUILD_PERF_TESTS=OFF \
 		-D BUILD_TESTS=OFF -D BUILD_opencv_apps=OFF \
