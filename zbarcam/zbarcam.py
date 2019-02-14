@@ -79,9 +79,9 @@ class ZBarCam(AnchorLayout):
         image_data = texture.pixels
         size = texture.size
         fmt = texture.colorfmt.upper()
-        #PIL doesn't support BGRA but IOS uses BGRA for the camera
-        #if BGRA is detected it will switch to RGBA, color will be off
-        #but we don't care as it's just looking for barcodes
+        # PIL doesn't support BGRA but IOS uses BGRA for the camera
+        # if BGRA is detected it will switch to RGBA, color will be off
+        # but we don't care as it's just looking for barcodes
         if fmt == 'BGRA':
             fmt = 'RGBA'
         pil_image = PIL.Image.frombytes(mode=fmt, size=size, data=image_data)
