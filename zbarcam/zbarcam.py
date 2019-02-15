@@ -82,7 +82,7 @@ class ZBarCam(AnchorLayout):
         # PIL doesn't support BGRA but IOS uses BGRA for the camera
         # if BGRA is detected it will switch to RGBA, color will be off
         # but we don't care as it's just looking for barcodes
-        if fmt == 'BGRA':
+        if platform == 'ios' and fmt == 'BGRA':
             fmt = 'RGBA'
         pil_image = PIL.Image.frombytes(mode=fmt, size=size, data=image_data)
         # calling `zbarlight.scan_codes()` for every single `code_type`,
